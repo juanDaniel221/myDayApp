@@ -1,0 +1,44 @@
+<section class="todoapp">
+  <header class="header">
+    <div class="container">
+      <h1>My Day</h1>
+      <p>All my tasks in one place</p>
+      <input
+        class="new-todo"
+        placeholder="Type new todo"
+        autofocus
+        type="text"
+        [(ngModel)]="nuevaTarea"
+        (keyup.enter)="guardarTarea()"
+      />
+    </div>
+  </header>
+  <div class="container todoapp-wrapper">
+    <!-- This section should be hidden by default and shown when there are todos -->
+
+
+      <router-outlet></router-outlet>
+ <!-- This footer should be hidden by default and shown when there are todos -->
+    <footer class="footer" *ngIf="tareas.length > 0">
+      <!-- This should be `0 items left` by default -->
+      <span class="todo-count">
+        <strong>{{ tareas.length }}</strong>
+        item<span *ngIf="tareas.length === 1"> left</span><span *ngIf="tareas.length !== 1">s left</span>
+      </span>
+      <!-- Remove this if you don't implement routing -->
+      <ul class="filters">
+        <li>
+          <a routerLink="/" [routerLinkActive]="'selected'" >All</a>
+        </li>
+        <li>
+          <a routerLink="/Pending"  [routerLinkActive]="'selected'">Pending</a>
+        </li>
+        <li>
+          <a routerLink="/Completed"  [routerLinkActive]="'selected'">Completed</a>
+        </li>
+      </ul>
+      <!-- Hidden if no completed items are left ↓ -->
+      <button *ngIf="tareas1.length >= 1" class="clear-completed" (click)="onClearTaskStatus()">Clear completed</button>
+    </footer>
+  </div>
+</section>

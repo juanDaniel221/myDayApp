@@ -1,0 +1,14 @@
+<section class="main" *ngIf="tareas.length > 0">
+  <ul class="todo-list">
+    <li *ngFor="let item of tareas; let i = index" [class.completed]="item.completed"  [class.editing]="i === editingIndex">
+      <div class="view">
+        <input class="toggle" type="checkbox" [checked]="item.completed" (change)="onChangeTaskStatus(item.id)"  />
+        <label 
+
+        (dblclick)="onLabelDoubleClick(i, item.title )">{{ item.title }}</label>
+        <button class="destroy" (click)="onDeleteTaskStatus(item.id)"></button>
+      </div>
+      <input [(ngModel)]="nuevaTarea" (keyup.enter)="updateTarea(item.id)" (keyup.escape)="onKeyUp($event)" class="edit" />
+    </li>
+  </ul>
+  </section>
